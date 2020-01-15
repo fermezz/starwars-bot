@@ -1,0 +1,13 @@
+language: python
+services: docker
+sudo: required
+install:
+- curl https://cli-assets.heroku.com/install.sh | sh
+script:
+- docker build -t starwarsbot .
+- heroku container:push starwarsbot --app starwarsbot
+after_success:
+- heroku container:release --app starwarsbot swbot
+env:
+  global:
+    secure: uAdjkl6guD06MF7mLfKm5ak17Co3dnPTprMSju6fP3B/Eix5LC5Oz6eu4K3HohdUOSRKT+1edLlwCSU355WQe87Af5IqlZ0jtp7C9D3KuY8G+3by0e6DC2YhcDqS7+NzvoTMDm3hcDGHPK5dyU+pUWfiWwnhH3/Q0mm90uN2khPvW+boai9B5KR9dTvCbAROYoJgfaygsT8FCZlZFS6sH2nO0hPF1ZvY5Z8A7ZudwQjJ3hsSjaRmvxHwufqfIREDVZk8tWCBPeLWmqMGwEPDv/QM+putp9S23k+9JJVCMD6T0icITb50O3g5s+J49yrPc1kpwDmrFJZV+p8iWQ+Tg0cN+jpoSoE+HFdOhPAsv541ult2JR8ZrnOnQ9TvSJK/gBimvVkzIP6csG5lJEpyv8dM4VWofa46dyvJLV9gVOmqrVIpAOXg9AVhtBQw/0ekAeuNGRk7bdpR12SvR+L3r/Dh+8wmslZ9yb4AoI0VECbD+TfUioP7BT4PMfA+sHRJj3WFhkMqAYND78N058fcc4DJOb5PBAjvCWUm7CpHSSUbW2W9Zup9FMT085ecLw1IXxOjNGnPaRNuN0xXr+8+Hke9zNuCcEZoaWpndj521YkeqTCroT/4uvAl7mifsDhbkzUAbQbSWkMin+8IhhhonkMAaZzBXp214T9kF4H2VSU=

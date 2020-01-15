@@ -3,6 +3,7 @@ services: docker
 sudo: required
 install:
 - curl https://cli-assets.heroku.com/install.sh | sh
+- heroku container:login
 script:
 - docker build -t starwarsbot .
 - heroku container:push starwarsbot --app starwarsbot

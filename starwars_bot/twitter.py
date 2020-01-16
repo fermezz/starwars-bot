@@ -1,17 +1,19 @@
-import os
-
 import tweepy
 
 
-def update_status(text):
-    auth = tweepy.OAuthHandler(
-        os.environ["CONSUMER_API_KEY"],
-        os.environ["CONSUMER_API_SECRET_KEY"],
-    )
-    auth.set_access_token(
-        os.environ["ACCESS_TOKEN"],
-        os.environ["ACCESS_TOKEN_SECRET"],
-    )
+class Twitter:
 
-    api = tweepy.API(auth)
-    api.update_status(text)
+    def __init__(
+        self,
+        consumer_api_key,
+        consumer_api_secret_key,
+        access_token,
+        access_token_secret,
+    ):
+        auth = tweepy.OAuthHandler(consumer_api_key, consumer_api_secret_key)
+        auth.set_access_token(access_token, access_token_secret)
+
+        self.api = tweepy.API(auth)
+
+    def update_status(text):
+        self.api.update_status(text)
